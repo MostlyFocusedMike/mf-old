@@ -2,28 +2,52 @@
 /*jslint white: true*/
 /*globals $:false */
 
+/*visibility = window.getComputedStyle(frame).getPropertyValue("display");*/
 (function () {
 
   //set the responsive text size
-  function setFontSize(event) {
-   // var num = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+  function setFontSize(e) {
     var  num = miniScreen.clientWidth; 
       num = num * .04;
       miniScreen.style.fontSize =  num + "px";
   }
+  
+  //start animation at the beginning 
+  function resetFrame(active) {
+    var elm = document.getElementById("f-" + active),
+      newone = elm.cloneNode(true);
+    elm.parentNode.replaceChild(newone, elm);
+  }
+  
+  //switches to new frame
+  function switchFrame(e, active) {
+    var newActive = e.target.id,
+      newFrame = document.getElementById("f-" + newActive),
+      oldActive = active,
+      oldFrame = document.getElementById("f-" + oldActive)
+
+    oldFrame.style.display = "none";
+    newFrame.style.display = "block";
+    return newActive;
+  }
 ////////////////////////////////////////////////////////////////////////////////////////////
 // MAIN PROGRAM //////////////////////////////////////////////////////////////////////////////
-  var miniScreen = document.getElementsByClassName("container")[0],
-    button = document.getElementsByTagName("button")[0];
-
+  var miniScreen = document.getElementsByClassName("mini-screen")[0],
+    button = document.getElementsByTagName("button"),
+    active = "num-0", i;
+  
   (function(event) { setFontSize(event) }());
-  window.addEventListener("resize", function(event) {
-    setFontSize(event); 
+  window.addEventListener("resize", function(e) {
+    setFontSize(e); 
   });
 
-  button.addEventListener("click", function() {
-    window.alert(miniScreen.className);
-  }, false);
+  for (i = 0; i < button.length; i++) {
+    button[i].addEventListener("click", function(e) {
+      active = switchFrame(e, active);
+      resetFrame(active);
+    }, false);
+  }
+  
 
 
 

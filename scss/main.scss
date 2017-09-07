@@ -1,25 +1,174 @@
-.holder {
-	width: 60%;
+$unit-border: 2px solid black;
+
+%setup {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+%frame-setup {
+  top: 0;
+  left: 0;
+  font-size: 100%;
+  width: 100%;
+  padding-top: 56.25%;
+  display: none;
+}
+
+@mixin unit($height, $width, $top: 0, $left: 0, $scale: 1
+  ) {
+  font-size: 100%;
+  height: $height;
+  width: $width;
+  top: $top;
+  left: $left;
+  transform: scale($scale);
+  //color goes in the middle to show that the 
+  //number(s) before are size, and number(s) after
+  //are position
+  
+}
+
+@mixin text-piece($font-size, $color, $top, $left,) {
+  display: block;
+  font-size: $font-size;
+  color: $color; 
+  top: $top;   
+  left: $left;
+  //color goes in the middle to show that the 
+  //number(s) before are size, and number(s) after
+  //are position 
+}
+
+@mixin shape-piece($height, $width, $color, $top, $left){
+  height: $height;
+  width: $width;
+  background-color: $color;
+  top: $top;
+  left: $left;
+  
+}
+
+@keyframes bot {
+0% {top: 0}
+100% {top: 50%}
+}
+@keyframes side {
+0% {left: 20%; transform: scale(4)}
+100% {left: 70%; transform: scale(1)}
+}
+
+.proscenium {
+	width: 100%;
   max-width: 600px;
   margin: 0 auto;
-  .container {
+  position: relative;
+  .mini-screen {
+    font-family: helvetica, sans-serif;
     background-color: red;
     position: relative;
     width: 100%;
     padding-top: 56.25%; /* 16:9 Aspect Ratio */
-    font-size: 20px;
+    font-size: 20px; //this changes to scale with the width of the box
+    .frame#f-num-0 {
+      @extend %setup;
+      @extend %frame-setup;
+      display: block;
+      .unit.fraction-one-half {
+        @extend %setup;
+        @include unit(20%, 5%, 40%, 20%, 4);
+        //border: $unit-border;
+        animation: side 2s ease-in-out 3 alternate forwards;
+        .one {
+          @extend %setup;
+          @include text-piece(100%, black, 0, 25%,);
+        animation: bot 2s ease-in-out 3 alternate forwards; 
+        }
+        .shape.line {
+          @extend %setup;
+          @include shape-piece(3%, 80%, black, 44%, 8.5% );
+        }
+        .two {
+          @extend %setup;
+          @include text-piece(100%, black, 50%, 30%,);
+        }
+      }
+      .unit.fraction-three-four {
+        @extend %setup;
+        @include unit(20%, 5%, 40%, 60%, 4);
+        //border: $unit-border;
+        .three {
+          @extend %setup;
+          @include text-piece(100%, black, 0, 25%,);
+        }
+        .shape.line {
+          @extend %setup;
+          @include shape-piece(3%, 80%, black, 44%, 8.5% );
+        }
+        .four {
+          @extend %setup;
+          @include text-piece(100%, black, 50%, 25%);
+        }
+      }
+    }
+    .frame#f-num-1 {
+      @extend %setup;
+      @extend %frame-setup;
+      h1 {
+        @extend %setup;
+        top: 0;
+        left: 0;
+      }
+    }
+    .frame#f-num-2 {
+      @extend %setup;
+      @extend %frame-setup;
+      h1 {
+        @extend %setup;
+        top: 0;
+        left: 0;
+      }
+    }
+    .frame#f-num-3 {
+      @extend %setup;
+      @extend %frame-setup;
+      h1 {
+        @extend %setup;
+        top: 0;
+        left: 0;
+      }
+    }
+    .frame#f-num-4 {
+      @extend %setup;
+      @extend %frame-setup;
+      h1 {
+        @extend %setup;
+        top: 0;
+        left: 0;
+      }
+    }
+    .frame#f-num-5 {
+      @extend %setup;
+      @extend %frame-setup;
+      h1 {
+        @extend %setup;
+        top: 0;
+        left: 0;
+      }
+    }
   }
 }
 
-
-.text {
-   position:  absolute;
-   display: block;
-   top: 10%;
-   left: 5%;
-   bottom: 0;
-   right: 0;
-   text-align: left;
-   font-size: 150%;
-   color: white;
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes example {
+    from {background-color: red;}
+    to {background-color: yellow;}
 }
+
+/* Standard syntax */
+@keyframes example {
+    from {background-color: red;}
+    to {background-color: yellow;}
+}
+
