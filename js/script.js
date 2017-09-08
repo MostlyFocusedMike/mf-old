@@ -23,11 +23,15 @@
   function switchFrame(e, active) {
     var newActive = e.target.id,
       newFrame = document.getElementById("f-" + newActive),
+      newInfo = document.getElementById(newActive + "-info"),
       oldActive = active,
-      oldFrame = document.getElementById("f-" + oldActive)
+      oldFrame = document.getElementById("f-" + oldActive),
+      oldInfo = document.getElementById(active + "-info");
 
     oldFrame.style.display = "none";
+    oldInfo.style.display = "none";
     newFrame.style.display = "block";
+    newInfo.style.display = "block";
     return newActive;
   }
 ////////////////////////////////////////////////////////////////////////////////////////////

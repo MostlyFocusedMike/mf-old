@@ -58,8 +58,8 @@ $unit-border: 2px solid black;
 0% {left: 20%; transform: scale(4)}
 100% {left: 70%; transform: scale(1)}
 }
-
-.proscenium {
+#wrapper {
+  .proscenium {
 	width: 100%;
   max-width: 600px;
   margin: 0 auto;
@@ -159,6 +159,34 @@ $unit-border: 2px solid black;
     }
   }
 }
+  .info-section {
+    #num-0-info {
+      @extend %setup;
+      display: block;
+    }
+    #num-1-info {
+      @extend %setup;
+      display: none;
+    }
+    #num-2-info {
+      @extend %setup;
+      display: none;
+    }
+    #num-3-info {
+      @extend %setup;
+      display: none;
+    }
+    #num-4-info {
+      @extend %setup;
+      display: none;
+    }
+    #num-5-info {
+      @extend %setup;
+      display: none;
+    }
+  }
+}
+
 
 /* Safari 4.0 - 8.0 */
 @-webkit-keyframes example {
